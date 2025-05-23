@@ -52,7 +52,7 @@ class PollardRhoAlgorithm {
         BigInteger d = BigInteger.ONE;
         int stepCount = 0;
         BigInteger current_c = c0; 
-        int maxSteps = 300000;
+        int maxSteps = 300;
 
         while (d.equals(BigInteger.ONE) && stepCount < maxSteps) {
             stepCount++;
@@ -72,7 +72,7 @@ class PollardRhoAlgorithm {
                             factors.add(otherFactor);
                         } else {
                             PollardRhoAlgorithm subFactorizer = new PollardRhoAlgorithm();
-                            subFactorizer.factorizeWithSteps(otherFactor, new BigInteger("2"), new BigInteger("2"), new BigInteger("1"));
+                            subFactorizer.factorizeWithSteps(otherFactor, x0, y0, c0);
                             List<BigInteger> subFactors = subFactorizer.getFactors();
                             if (subFactors != null && !subFactors.isEmpty() && !subFactors.contains(otherFactor)) {
                                 for (BigInteger sf : subFactors) {
@@ -93,11 +93,11 @@ class PollardRhoAlgorithm {
             }
 
             if (d.equals(n) && stepCount < maxSteps) {
-                System.out.println("НОД стало равно n на шаге " + stepCount + " с c=" + current_c + ". Перезапуск с x0=2, y0=2, c=2.");
+                System.out.println("НОД стало равно n на шаге " + stepCount + " с c=" + current_c + ". Перезапуск.");
                 steps.clear();
-                x = new BigInteger("2"); 
-                y = new BigInteger("2"); 
-                current_c = new BigInteger("2"); 
+                x = new BigInteger("2");
+                y = new BigInteger("2");
+                current_c = new BigInteger("2");
                 d = BigInteger.ONE;
                 stepCount = 0;
             }
@@ -105,7 +105,7 @@ class PollardRhoAlgorithm {
 
         if (factors.isEmpty()) {
             if (!n.isProbablePrime(20)) { 
-                 System.out.println("Не удалось найти делители для " + n + " в пределах лимита шагов или с опробованными константами (x0=" + x0 + ", y0=" + y0 + ", c_initial=" + c0 + ", c_fallback=2).");
+                 System.out.println("Не удалось найти делители для " + n + " в пределах лимита шагов или с опробованными константами.");
             } else if (!factors.contains(n)) { 
                 factors.add(n); 
             }
