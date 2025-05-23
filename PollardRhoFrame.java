@@ -118,6 +118,8 @@ class PollardRhoAlgorithm {
         return factors;
     }
 }
+
+
 public class PollardRhoFrame extends JFrame {
     private JTextField inputFieldN;
     private JTextField inputFieldX0;
@@ -131,7 +133,7 @@ public class PollardRhoFrame extends JFrame {
 
     private JLabel labelN, labelX0, labelY0, labelC;
 
-    private static final Color YA_OAK = new Color(179, 139, 102);
+    private static final Color YA_OAK = new Color(140, 139, 102);
     private static final Color APPLE_PIE = new Color(145, 185, 12);
     private static final Color BORDER_GREEN = new Color(0, 150, 0); 
 
